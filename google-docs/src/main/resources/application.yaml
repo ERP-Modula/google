@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: google-docs
+google-docs:
+  module:
+    uuid: 40fc9b0f-20f3-4dea-8e45-333eafe395a3
+    name: Google Docs
+server:
+  port: 8080
