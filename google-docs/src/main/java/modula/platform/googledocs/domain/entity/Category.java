@@ -1,11 +1,13 @@
 package modula.platform.googledocs.domain.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-import java.util.UUID;
+@Getter
+@RequiredArgsConstructor
+public enum Category {
+    DOCUMENT("Document"),
+    OTHER("Other");
 
-@Data
-public class Category {
-    private UUID id;
-    private String name;
+    private final String name;
 }

@@ -4,6 +4,11 @@ spring:
 google-docs:
   module:
     uuid: 40fc9b0f-20f3-4dea-8e45-333eafe395a3
-    name: Google Docs
+    name: googledocs
+    label: Google Docs
+    description: Google Docs integration module
+    iconPath: mock/path
+    isPublic: false
+    theme: mockTheme
 server:
   port: 8080

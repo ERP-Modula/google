@@ -1,11 +1,14 @@
 package modula.platform.googledocs.configuration;
 
 
+import modula.platform.googledocs.domain.entity.Category;
 import modula.platform.googledocs.domain.entity.actions.Action;
+import modula.platform.googledocs.domain.entity.actions.ActionShortInfo;
 import modula.platform.googledocs.domain.entity.field.Field;
 import modula.platform.googledocs.domain.entity.field.FieldType;
-import modula.platform.googledocs.domain.entity.triggers.Trigger;
+import modula.platform.googledocs.domain.entity.triggers.TriggerShortInfo;
 
+import java.util.UUID;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,16 +26,26 @@ public class ConfigurationUtils {
                 .build();
     }
 
-    public static void putAvailableActions(List<Action> actions) {
+    private static ActionShortInfo getListFilesActionShortInfo() {
+        return ActionShortInfo.builder()
+                // id не должен быть рандомным
+                .id(UUID.randomUUID())
+                .name("listFiles")
+                .label("List Documents")
+                .description("Retrieve a list of documents")
+                .category(Category.DOCUMENT.getName())
+                .build();
+    }
 
+    public static void putAvailableActionsShortInfo(List<ActionShortInfo> actions) {
         actions.add(
-            getListFilesAction()
+                getListFilesActionShortInfo()
         );
     }
 
 
 
-    public static void putAvailableTriggers(List<Trigger> triggers) {
+    public static void putAvailableTriggersShortInfo(List<TriggerShortInfo> triggers) {
 
     }
 }
