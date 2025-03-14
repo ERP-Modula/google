@@ -1,6 +1,21 @@
 spring:
   application:
     name: google-docs
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 66206194589-ba9umpocfl5jjmcb99abv7kpgspd7ede.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - https://www.googleapis.com/auth/documents
+              - https://www.googleapis.com/auth/drive.file
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
+
 google-docs:
   module:
     uuid: 40fc9b0f-20f3-4dea-8e45-333eafe395a3
