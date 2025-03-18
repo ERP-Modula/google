@@ -37,6 +37,16 @@ public class ConfigurationUtils {
                 .build();
     }
 
+    private static TriggerShortInfo getWatchDocumentsTriggerInfo() {
+        return TriggerShortInfo.builder()
+                .id(UUID.randomUUID())
+                .name("watchDocuments")
+                .label("Watch Documents")
+                .description("Triggers when a new document is created or modified in a specific folder")
+                .category(Category.DOCUMENT.getName())
+                .build();
+    }
+
     public static void putAvailableActionsShortInfo(List<ActionShortInfo> actions) {
         actions.add(
                 getListFilesActionShortInfo()
@@ -46,6 +56,8 @@ public class ConfigurationUtils {
 
 
     public static void putAvailableTriggersShortInfo(List<TriggerShortInfo> triggers) {
-
+        triggers.add(
+                getWatchDocumentsTriggerInfo()
+        );
     }
 }

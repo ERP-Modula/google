@@ -13,16 +13,12 @@ public class ApiManagerService {
     private final ModuleConfiguration moduleConfiguration;
 
     public ModuleInfo getModuleInfo() {
-        ModuleInfo moduleInfo = null;
-
-        // возможно будут не всегда доступные действия и добавлять их можно здесь
-
+        ModuleInfo moduleInfo = new ModuleInfo();
+        moduleInfo.setShortInfo(moduleConfiguration.getModuleModel());
         return moduleInfo;
     }
 
     public ModuleShortInfo getModuleShortInfo() {
-        ModuleShortInfo moduleShortInfo = moduleConfiguration.getModuleModel();
-
-        return moduleShortInfo;
+        return moduleConfiguration.getModuleModel();
     }
 }
