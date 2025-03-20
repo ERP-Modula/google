@@ -1,6 +1,7 @@
 package modula.platform.googledocs.core;
 
 import lombok.RequiredArgsConstructor;
+import modula.platform.googledocs.configuration.ConfigurationUtils;
 import modula.platform.googledocs.configuration.ModuleConfiguration;
 import modula.platform.googledocs.domain.entity.ModuleInfo;
 import modula.platform.googledocs.domain.entity.ModuleShortInfo;
@@ -13,8 +14,20 @@ public class ApiManagerService {
     private final ModuleConfiguration moduleConfiguration;
 
     public ModuleInfo getModuleInfo() {
-        ModuleInfo moduleInfo = new ModuleInfo();
-        moduleInfo.setShortInfo(moduleConfiguration.getModuleModel());
+        ModuleShortInfo moduleShortInfo = moduleConfiguration.getModuleModel();
+        ModuleInfo moduleInfo = ModuleInfo.builder()
+                .id(moduleShortInfo.getId())
+                .name(moduleShortInfo.getName())
+                .label(moduleShortInfo.getLabel())
+                .description(moduleShortInfo.getDescription())
+                .theme(moduleShortInfo.getTheme())
+                .iconPath(moduleShortInfo.getIconPath())
+                .isPublic(moduleShortInfo.getIsPublic())
+                .build();
+
+        moduleInfo.setActions(ConfigurationUtils.getAvailableActionsInfo());
+        moduleInfo.setTriggers(ConfigurationUtils.getAvailableTriggerInfo());
+
         return moduleInfo;
     }
 

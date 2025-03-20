@@ -3,8 +3,8 @@ package modula.platform.googledocs.domain.entity.actions;
 
 import lombok.Builder;
 import lombok.Data;
-import modula.platform.googledocs.domain.entity.Category;
-import modula.platform.googledocs.domain.entity.field.Field;
+import modula.platform.googledocs.domain.entity.field.ActionInterface;
+import modula.platform.googledocs.domain.entity.field.ActionParameter;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import java.util.List;
 @Builder
 public class Action {
     private String name;
+    private String label;
     private String description;
-    private Category category;
-    private List<Field> requiredFields;
-    private List<Field> producedFields;
+    private List<ActionInterface> outputInterface;
+    private List<ActionParameter> inputParameters;
 }
