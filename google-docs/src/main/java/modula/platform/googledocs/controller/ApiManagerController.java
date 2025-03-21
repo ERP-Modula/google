@@ -19,7 +19,7 @@ public class ApiManagerController {
 
     private final ApiManagerService apiManagerService;
 
-    @GetMapping("/module/shortMetadata")
+    @GetMapping("/module/short-metadata")
     public ModuleShortInfo getShortModuleApi() {
         return apiManagerService.getModuleShortInfo();
     }
