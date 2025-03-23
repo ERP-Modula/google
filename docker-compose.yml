@@ -12,6 +12,24 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./postgres_init:/docker-entrypoint-initdb.d
 
+  liquibase-migrations:
+    image: liquibase/liquibase:4.18
+    depends_on:
+      - db
+    networks:
+      - backend
+    command:
+      - --hub-mode=off
+      - --changelog-file=master.xml
+      - --driver=org.postgresql.Driver
+      - --url=jdbc:postgresql://db:5432/google
+      - --username=admin
+      - --password=admin
+      - --defaultSchemaName=google_docs
+      - update
+    volumes:
+      - ./migrations/changelog:/liquibase/changelog
+
   app:
     build:
       context: .

@@ -1,17 +1,25 @@
 package modula.platform.googledocs.core;
 
+import com.google.api.services.drive.model.File;
 import lombok.RequiredArgsConstructor;
 import modula.platform.googledocs.configuration.ConfigurationUtils;
 import modula.platform.googledocs.configuration.ModuleConfiguration;
 import modula.platform.googledocs.domain.entity.ModuleInfo;
 import modula.platform.googledocs.domain.entity.ModuleShortInfo;
+import modula.platform.googledocs.domain.entity.actions.Action;
+import modula.platform.googledocs.domain.entity.field.ActionInterface;
+import modula.platform.googledocs.repository.ActionInterfaceRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ApiManagerService {
 
     private final ModuleConfiguration moduleConfiguration;
+    private final ActionService actionService;
+    private final ActionInterfaceRepository actionInterfaceRepository;
 
     public ModuleInfo getModuleInfo() {
         ModuleShortInfo moduleShortInfo = moduleConfiguration.getModuleModel();
@@ -25,7 +33,12 @@ public class ApiManagerService {
                 .isPublic(moduleShortInfo.getIsPublic())
                 .build();
 
-        moduleInfo.setActions(ConfigurationUtils.getAvailableActionsInfo());
+        List<Action> actionList = actionService.getAvailableActions();
+//        List<ActionInterface> interfaceList = ConfigurationUtils.convertClassToEntities(File.class);
+
+//        actionList.get(0).setOutputInterface(interfaceList);
+
+        moduleInfo.setActions(actionList);
         moduleInfo.setTriggers(ConfigurationUtils.getAvailableTriggerInfo());
 
         return moduleInfo;

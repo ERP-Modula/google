@@ -37,58 +37,58 @@ public class ConfigurationUtils {
                 .build();
     }
 
-    private static Action getListFilesActionInfo() {
-        return Action.builder()
-                .name("listFiles")
-                .label("List Documents")
-                .description("Retrieve a list of documents")
-                .inputParameters(getListFilesActionParameters())
-                .outputInterface(getListFilesOutputInterface())
-                .build();
-    }
+//    private static Action getListFilesActionInfo() {
+//        return Action.builder()
+//                .name("listFiles")
+//                .label("List Documents")
+//                .description("Retrieve a list of documents")
+//                .inputParameters(getListFilesActionParameters())
+//                .outputInterface(getListFilesOutputInterface())
+//                .build();
+//    }
 
     private static List<ActionParameter> getListFilesActionParameters() {
         List<ActionParameter> out = new ArrayList<>();
 
-        List<NestedFieldOption> destinationNestedOptions = new ArrayList<>();
-        destinationNestedOptions.add(
-                NestedFieldOption.builder()
-                        .value("drive")
-                        .label("My Drive")
-                        .type(InterfaceFieldType.STRING)
-                        .isDefaultValue(true)
-                        .build()
-        );
+//        List<NestedFieldOption> destinationNestedOptions = new ArrayList<>();
+//        destinationNestedOptions.add(
+//                NestedFieldOption.builder()
+//                        .value("drive")
+//                        .label("My Drive")
+//                        .type(InterfaceFieldType.STRING)
+//                        .isDefaultValue(true)
+//                        .build()
+//        );
 
-        List<ActionParameter> destinationSpec = new ArrayList<>();
-        destinationSpec.add(
-                ActionParameter.builder()
-                        .name("folder")
-                        .label("File ID")
-                        .type(ParameterType.STRING)
-                        .build()
-        );
+//        List<ActionParameter> destinationSpec = new ArrayList<>();
+//        destinationSpec.add(
+//                ActionParameter.builder()
+//                        .name("folder")
+//                        .label("File ID")
+//                        .type(ParameterType.STRING)
+//                        .build()
+//        );
 
-        List<ActionParameter> connectionSpec = new ArrayList<>();
-        connectionSpec.add(
-                ActionParameter.builder()
-                        .name("destination")
-                        .label("Destination")
-                        .required(true)
-                        .type(ParameterType.SELECT)
-                        .options(destinationNestedOptions)
-                        .spec(destinationSpec)
-                        .build()
-        );
+//        List<ActionParameter> connectionSpec = new ArrayList<>();
+//        connectionSpec.add(
+//                ActionParameter.builder()
+//                        .name("destination")
+//                        .label("Destination")
+//                        .required(true)
+//                        .type(ParameterType.SELECT)
+//                        .options(destinationNestedOptions)
+//                        .spec(destinationSpec)
+//                        .build()
+//        );
 
-        ActionParameter actionParameter = ActionParameter.builder()
-                .name("connection")
-                .label("Connection")
-                .type(ParameterType.CONNECTION)
-                .required(true)
-                .spec(connectionSpec)
-                .build();
-        out.addLast(actionParameter);
+//        ActionParameter actionParameter = ActionParameter.builder()
+//                .name("connection")
+//                .label("Connection")
+//                .type(ParameterType.CONNECTION)
+//                .required(true)
+//                .spec(connectionSpec)
+//                .build();
+//        out.addLast(actionParameter);
         return out;
     }
 
@@ -111,9 +111,9 @@ public class ConfigurationUtils {
 
     public static List<Action> getAvailableActionsInfo() {
         List<Action> actions = new ArrayList<>();
-        actions.add(
-                getListFilesActionInfo()
-        );
+//        actions.add(
+//                getListFilesActionInfo()
+//        );
         return actions;
     }
 
@@ -130,9 +130,9 @@ public class ConfigurationUtils {
         Field[] fields = clazz.getDeclaredFields();
 
         for (Field field : fields) {
-            ActionInterface entity = ActionInterface.builder().build();
+            ActionInterface entity = new ActionInterface();
             entity.setName(field.getName());
-            entity.setType(InterfaceFieldType.STRING); // Пример, можно адаптировать
+            entity.setType(InterfaceFieldType.STRING.getName()); // Пример, можно адаптировать
             entity.setLabel(field.getName()); // Пример, можно адаптировать
             entity.setTime(false); // Пример, можно адаптировать
 
