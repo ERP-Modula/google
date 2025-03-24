@@ -26,6 +26,6 @@ public class GoogleToken {
     @Column(length = 2048)
     private String refreshToken;
 
-//    @Column(length = 2048)
+    @Column(length = 2048)
     private String scopes;
 }
