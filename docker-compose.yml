@@ -6,6 +6,8 @@ services:
       POSTGRES_DB: google
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+    networks:
+      - backend
     ports:
       - "5432:5432"
     volumes:
@@ -28,7 +30,7 @@ services:
       - --defaultSchemaName=google_docs
       - update
     volumes:
-      - ./migrations/changelog:/liquibase/changelog
+      - ./google-docs/migrations/changelog:/liquibase/changelog
 
   app:
     build:
@@ -46,3 +48,6 @@ services:
 
 volumes:
   postgres_data:
+
+networks:
+  backend:
