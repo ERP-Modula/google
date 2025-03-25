@@ -17,9 +17,14 @@ public class GoogleDocsController {
 
     private final GoogleDocsService googleDocsService;
 
-    @PostMapping
+    @PostMapping("/documents")
     public List<File> getDocumentsFromFolder(@RequestBody ListDocumentsRequest request) throws GeneralSecurityException, IOException {
-        return googleDocsService.getFilesFromFolder(request);
+        return googleDocsService.getDocumentsFromFolder(request);
+    }
+
+    @PostMapping("/folders")
+    public List<File> getFoldersFromFolder(@RequestBody ListDocumentsRequest request) throws GeneralSecurityException, IOException {
+        return googleDocsService.getFoldersFromFolder(request);
     }
 
 }

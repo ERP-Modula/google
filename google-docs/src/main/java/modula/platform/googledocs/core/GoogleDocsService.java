@@ -19,8 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -30,66 +28,45 @@ public class GoogleDocsService {
     private final TokenService tokenService;
     private final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 
-    public List<File> getFilesFromFolder(ListDocumentsRequest request) throws GeneralSecurityException, IOException {
+    private String getListFilesQuery(String folderId, String mimeType) {
+        String folder = folderId == null ? "root" : folderId;
+        return String.format("'%s' in parents and mimeType='%s'", folder, mimeType);
+    }
+
+    private List<File> getFilesFromFolderWithMimeType(ListDocumentsRequest request, String mimeType) throws GeneralSecurityException, IOException {
         GoogleToken googleToken = tokenService
                 .getTokenByUserEmail(request.getUserEmail())
                 .orElseThrow(() -> new RuntimeException("User not registered"));
 
-        String folderId = request.getFolderId();
-        String accessToken = googleToken.getAccessToken();
-
-
         GoogleCredentials credentials = GoogleCredentials.newBuilder().setAccessToken(
-                AccessToken.newBuilder()
-//                        .setScopes(googleToken.getScopes())
-                        .setTokenValue(googleToken.getAccessToken())
-                        .build()
+                        AccessToken.newBuilder()
+                                .setTokenValue(googleToken.getAccessToken())
+                                .build()
                 )
                 .build()
-                .createScoped(DriveScopes.DRIVE_METADATA)
-                ;
-//                .createScoped(Arrays.asList(DriveScopes.DRIVE_FILE));
+                .createScoped(DriveScopes.DRIVE_METADATA);
         HttpRequestInitializer requestInitializer = new HttpCredentialsAdapter(
                 credentials);
 
-//        GoogleCredentials.create(AccessToken.newBuilder()
-//                        .setTokenValue(accessToken)
-//                        .setScopes(googleToken.getScopes())
-//
-//                .build());
-
         NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-
-//        Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, req -> {
-//            req.getHeaders().setAuthorization("Bearer " + accessToken);
-//        })
-//                .setApplicationName("modula-google-docs")
-//                .build();
 
         Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, requestInitializer)
                 .setApplicationName("modula-google-docs")
                 .build();
 
-
-
-        // Фильтр для получения только папок
-        String query = folderId == null ?
-                "'root' in parents and mimeType='application/vnd.google-apps.folder'" : // Корневая папка
-                "'" + folderId + "' in parents and mimeType='application/vnd.google-apps.folder'"; // Указанная папка
-
-        String query1 = "'1iKiPFlJv-1pX0Pspy9G7BNZsfUNoZN1g' in parents";
-
-
-
-        String pageToken = null;
+        String query = getListFilesQuery(request.getFolderId(), mimeType);
         FileList result = service.files().list()
-                .setQ("mimeType='application/vnd.google-apps.document'")
-//                .setQ("mimeType='image/jpeg'")
-//                .setSpaces("drive")
-//                .setFields("nextPageToken, files(id, name)")
-//                .setPageToken(pageToken)
+                .setQ(query)
                 .execute();
 
         return result.getFiles();
+    }
+
+    public List<File> getDocumentsFromFolder(ListDocumentsRequest request) throws GeneralSecurityException, IOException {
+        return getFilesFromFolderWithMimeType(request, "application/vnd.google-apps.document");
+    }
+
+    public List<File> getFoldersFromFolder(ListDocumentsRequest request) throws GeneralSecurityException, IOException {
+        return getFilesFromFolderWithMimeType(request, "application/vnd.google-apps.folder");
     }
 }
