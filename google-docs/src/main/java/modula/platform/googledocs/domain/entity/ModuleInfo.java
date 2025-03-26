@@ -19,6 +19,7 @@ public class ModuleInfo {
     private String iconPath;
     private Boolean isPublic;
     private String theme;
+    private List<String> categories;
     private List<Action> actions;
     private List<Trigger> triggers;
 }

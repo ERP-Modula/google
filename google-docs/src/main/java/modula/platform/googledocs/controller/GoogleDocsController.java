@@ -4,6 +4,7 @@ import com.google.api.services.drive.model.File;
 import lombok.RequiredArgsConstructor;
 import modula.platform.googledocs.core.GoogleDocsService;
 import modula.platform.googledocs.domain.dto.ListDocumentsRequest;
+import modula.platform.googledocs.domain.dto.ListModifiedDocumentsRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -25,6 +26,11 @@ public class GoogleDocsController {
     @PostMapping("/folders")
     public List<File> getFoldersFromFolder(@RequestBody ListDocumentsRequest request) throws GeneralSecurityException, IOException {
         return googleDocsService.getFoldersFromFolder(request);
+    }
+
+    @PostMapping("/documents/changes")
+    public List<File> getChangedDocumentsFromFolder(@RequestBody ListModifiedDocumentsRequest request) throws GeneralSecurityException, IOException {
+        return googleDocsService.getModifiedDocumentsFromFolder(request);
     }
 
 }

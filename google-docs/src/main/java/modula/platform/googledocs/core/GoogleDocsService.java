@@ -14,6 +14,7 @@ import com.google.auth.oauth2.AccessToken;
 import com.google.auth.oauth2.GoogleCredentials;
 import lombok.RequiredArgsConstructor;
 import modula.platform.googledocs.domain.dto.ListDocumentsRequest;
+import modula.platform.googledocs.domain.dto.ListModifiedDocumentsRequest;
 import modula.platform.googledocs.domain.entity.token.GoogleToken;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,13 @@ public class GoogleDocsService {
         return String.format("'%s' in parents and mimeType='%s'", folder, mimeType);
     }
 
-    private List<File> getFilesFromFolderWithMimeType(ListDocumentsRequest request, String mimeType) throws GeneralSecurityException, IOException {
+    private String getModifiedDocumentsQuery(String folderId, String modifiedDate) {
+        String folder = folderId == null ? "root" : folderId;
+        return String.format("'%s' in parents and mimeType='application/vnd.google-apps.document' and " +
+                "modifiedTime > '%s'", folder, modifiedDate);
+    }
+
+    private List<File> getFilesFromFolderWithQuery(ListDocumentsRequest request, String query) throws GeneralSecurityException, IOException {
         GoogleToken googleToken = tokenService
                 .getTokenByUserEmail(request.getUserEmail())
                 .orElseThrow(() -> new RuntimeException("User not registered"));
@@ -54,7 +61,7 @@ public class GoogleDocsService {
                 .setApplicationName("modula-google-docs")
                 .build();
 
-        String query = getListFilesQuery(request.getFolderId(), mimeType);
+//        String query = getListFilesQuery(request.getFolderId(), mimeType);
         FileList result = service.files().list()
                 .setQ(query)
                 .execute();
@@ -63,10 +70,22 @@ public class GoogleDocsService {
     }
 
     public List<File> getDocumentsFromFolder(ListDocumentsRequest request) throws GeneralSecurityException, IOException {
-        return getFilesFromFolderWithMimeType(request, "application/vnd.google-apps.document");
+        String query = getListFilesQuery(request.getFolderId(), "application/vnd.google-apps.document");
+        return getFilesFromFolderWithQuery(request, query);
     }
 
     public List<File> getFoldersFromFolder(ListDocumentsRequest request) throws GeneralSecurityException, IOException {
-        return getFilesFromFolderWithMimeType(request, "application/vnd.google-apps.folder");
+        String query = getListFilesQuery(request.getFolderId(), "application/vnd.google-apps.folder");
+        return getFilesFromFolderWithQuery(request, query);
+    }
+
+    public List<File> getModifiedDocumentsFromFolder(ListModifiedDocumentsRequest request) throws GeneralSecurityException, IOException {
+        String query = getModifiedDocumentsQuery(request.getFolderId(), request.getModifiedTime());
+
+        ListDocumentsRequest request1 = new ListDocumentsRequest();
+        request1.setFolderId(request.getFolderId());
+        request1.setUserEmail(request.getUserEmail());
+
+        return getFilesFromFolderWithQuery(request1, query);
     }
 }

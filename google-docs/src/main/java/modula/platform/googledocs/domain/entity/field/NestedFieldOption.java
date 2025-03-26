@@ -18,8 +18,9 @@ public class NestedFieldOption {
     private String value;
     // InterfaceFieldType
     private String type;
+    private Boolean isDefaultValue;
+
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ActionParameter> nested;
-    private Boolean isDefaultValue;
 }

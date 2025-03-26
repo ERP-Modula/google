@@ -34,9 +34,6 @@ public class ApiManagerService {
                 .build();
 
         List<Action> actionList = actionService.getAvailableActions();
-//        List<ActionInterface> interfaceList = ConfigurationUtils.convertClassToEntities(File.class);
-
-//        actionList.get(0).setOutputInterface(interfaceList);
 
         moduleInfo.setActions(actionList);
         moduleInfo.setTriggers(ConfigurationUtils.getAvailableTriggerInfo());
