@@ -3,11 +3,7 @@ package modula.platform.googledocs.configuration;
 
 import com.google.api.services.drive.model.File;
 import modula.platform.googledocs.domain.entity.Category;
-import modula.platform.googledocs.domain.entity.actions.Action;
-import modula.platform.googledocs.domain.entity.actions.ActionShortInfo;
-import modula.platform.googledocs.domain.entity.field.*;
-import modula.platform.googledocs.domain.entity.triggers.Trigger;
-import modula.platform.googledocs.domain.entity.triggers.TriggerShortInfo;
+//import modula.platform.googledocs.domain.entity.field.*;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -16,26 +12,26 @@ import java.util.List;
 
 public class ConfigurationUtils {
 
-    private static ActionShortInfo getListFilesActionShortInfo() {
-        return ActionShortInfo.builder()
-                // id не должен быть рандомным
-                .id(UUID.randomUUID())
-                .name("listFiles")
-                .label("List Documents")
-                .description("Retrieve a list of documents")
-                .category(Category.DOCUMENT.getName())
-                .build();
-    }
+//    private static ActionShortInfo getListFilesActionShortInfo() {
+//        return ActionShortInfo.builder()
+//                // id не должен быть рандомным
+//                .id(UUID.randomUUID())
+//                .name("listFiles")
+//                .label("List Documents")
+//                .description("Retrieve a list of documents")
+//                .category(Category.DOCUMENT.getName())
+//                .build();
+//    }
 
-    private static TriggerShortInfo getWatchDocumentsShortTriggerInfo() {
-        return TriggerShortInfo.builder()
-                .id(UUID.randomUUID())
-                .name("watchDocuments")
-                .label("Watch Documents")
-                .description("Triggers when a new document is created or modified in a specific folder")
-                .category(Category.DOCUMENT.getName())
-                .build();
-    }
+//    private static TriggerShortInfo getWatchDocumentsShortTriggerInfo() {
+//        return TriggerShortInfo.builder()
+//                .id(UUID.randomUUID())
+//                .name("watchDocuments")
+//                .label("Watch Documents")
+//                .description("Triggers when a new document is created or modified in a specific folder")
+//                .category(Category.DOCUMENT.getName())
+//                .build();
+//    }
 
 //    private static Action getListFilesActionInfo() {
 //        return Action.builder()
@@ -47,8 +43,8 @@ public class ConfigurationUtils {
 //                .build();
 //    }
 
-    private static List<ActionParameter> getListFilesActionParameters() {
-        List<ActionParameter> out = new ArrayList<>();
+//    private static List<ActionParameter> getListFilesActionParameters() {
+//        List<ActionParameter> out = new ArrayList<>();
 
 //        List<NestedFieldOption> destinationNestedOptions = new ArrayList<>();
 //        destinationNestedOptions.add(
@@ -89,64 +85,64 @@ public class ConfigurationUtils {
 //                .spec(connectionSpec)
 //                .build();
 //        out.addLast(actionParameter);
-        return out;
-    }
+//        return out;
+//    }
 
-    private static List<ActionInterface> getListFilesOutputInterface() {
+//    private static List<ActionInterface> getListFilesOutputInterface() {
+//
+//        return convertClassToEntities(File.class);
+//    }
 
-        return convertClassToEntities(File.class);
-    }
-
-    public static void putAvailableActionsShortInfo(List<ActionShortInfo> actions) {
-        actions.add(
-                getListFilesActionShortInfo()
-        );
-    }
-
-    public static void putAvailableTriggersShortInfo(List<TriggerShortInfo> triggers) {
-        triggers.add(
-                getWatchDocumentsShortTriggerInfo()
-        );
-    }
-
-    public static List<Action> getAvailableActionsInfo() {
-        List<Action> actions = new ArrayList<>();
+//    public static void putAvailableActionsShortInfo(List<ActionShortInfo> actions) {
+//        actions.add(
+//                getListFilesActionShortInfo()
+//        );
+//    }
+//
+//    public static void putAvailableTriggersShortInfo(List<TriggerShortInfo> triggers) {
+//        triggers.add(
+//                getWatchDocumentsShortTriggerInfo()
+//        );
+//    }
+//
+//    public static List<Action> getAvailableActionsInfo() {
+//        List<Action> actions = new ArrayList<>();
 //        actions.add(
 //                getListFilesActionInfo()
 //        );
-        return actions;
-    }
+//        return actions;
+//    }
 
-    public static List<Trigger> getAvailableTriggerInfo() {
-        List<Trigger> triggers = new ArrayList<>();
+//    public static List<Trigger> getAvailableTriggerInfo() {
+//        List<Trigger> triggers = new ArrayList<>();
+//
+//        return triggers;
+//    }
 
-        return triggers;
-    }
-
-    public static List<ActionInterface> convertClassToEntities(Class<?> clazz) {
-        List<ActionInterface> entities = new ArrayList<>();
-
-        // Получаем все поля класса, включая приватные
-        Field[] fields = clazz.getDeclaredFields();
-
-        for (Field field : fields) {
-            ActionInterface entity = new ActionInterface();
-            entity.setName(field.getName());
-            entity.setType(InterfaceFieldType.STRING.getName()); // Пример, можно адаптировать
-            entity.setLabel(field.getName()); // Пример, можно адаптировать
-            entity.setTime(false); // Пример, можно адаптировать
-
-            // Если поле является сложным типом (например, вложенный класс), рекурсивно обрабатываем его
-            if (!field.getType().isPrimitive() && !field.getType().getName().startsWith("java.")) {
-                List<ActionInterface> nestedEntities = convertClassToEntities(field.getType());
-                entity.setSpec(nestedEntities);
-            }
-
-            entities.add(entity);
-        }
-
-        return entities;
-    }
+//    public static List<ActionInterface> convertClassToEntities(Class<?> clazz) {
+//        List<ActionInterface> entities = new ArrayList<>();
+//
+//        // Получаем все поля класса, включая приватные
+//        Field[] fields = clazz.getDeclaredFields();
+//
+//        for (Field field : fields) {
+//            ActionInterface entity = new ActionInterface();
+//            entity.setName(field.getName());
+//            entity.setType(InterfaceFieldType.STRING.getName()); // Пример, можно адаптировать
+//            entity.setLabel(field.getName()); // Пример, можно адаптировать
+//            entity.setTime(false); // Пример, можно адаптировать
+//
+//            // Если поле является сложным типом (например, вложенный класс), рекурсивно обрабатываем его
+//            if (!field.getType().isPrimitive() && !field.getType().getName().startsWith("java.")) {
+//                List<ActionInterface> nestedEntities = convertClassToEntities(field.getType());
+//                entity.setSpec(nestedEntities);
+//            }
+//
+//            entities.add(entity);
+//        }
+//
+//        return entities;
+//    }
 
 
 }

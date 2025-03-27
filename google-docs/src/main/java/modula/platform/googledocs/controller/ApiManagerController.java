@@ -1,10 +1,9 @@
 package modula.platform.googledocs.controller;
 
 
+import com.modula.common.domain.moduleconfiguration.ModuleConfiguration;
 import lombok.RequiredArgsConstructor;
 import modula.platform.googledocs.core.ApiManagerService;
-import modula.platform.googledocs.domain.entity.ModuleInfo;
-import modula.platform.googledocs.domain.entity.ModuleShortInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +16,13 @@ public class ApiManagerController {
 
     private final ApiManagerService apiManagerService;
 
-    @GetMapping("/module/shortMetadata")
-    public ModuleShortInfo getShortModuleApi() {
-        return apiManagerService.getModuleShortInfo();
-    }
-
+//    @GetMapping("/module/shortMetadata")
+//    public ModuleShortInfo getShortModuleApi() {
+//        return apiManagerService.getModuleShortInfo();
+//    }
+//
     @GetMapping("/module/metadata")
-    public ModuleInfo getModuleApi() {
+    public ModuleConfiguration getModuleApi() {
         return apiManagerService.getModuleInfo();
     }
 }

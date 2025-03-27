@@ -1,8 +1,7 @@
 package modula.platform.googledocs.core;
 
 import lombok.RequiredArgsConstructor;
-import modula.platform.googledocs.domain.entity.actions.Action;
-import modula.platform.googledocs.repository.ActionRepository;
+//import modula.platform.googledocs.repository.ActionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +10,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ActionService {
 
-    private final ActionRepository actionRepository;
-
-    public List<Action> getAvailableActions() {
-        return actionRepository.findAll();
-    }
+//    private final ActionRepository actionRepository;
+//
+//    public List<Action> getAvailableActions() {
+//        return actionRepository.findAll();
+//    }
 
 }

@@ -1,0 +1,1 @@
+INSERT INTO google_docs.module_action (id, category, description, endpoint_url, label, name) VALUES ('5a4a856c-013a-4e62-8ab6-37695023e6b6', 'Document', 'Retrieve a list of documents', null, 'List Documents', 'listFiles');
