@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:13
+    container_name: postgres_db_google
+    environment:
+      POSTGRES_DB: google
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    networks:
+      - backend
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres_init:/docker-entrypoint-initdb.d
+
+  liquibase-migrations:
+    image: liquibase/liquibase:4.18
+    depends_on:
+      - db
+    networks:
+      - backend
+    command:
+      - --hub-mode=off
+      - --changelog-file=master.xml
+      - --driver=org.postgresql.Driver
+      - --url=jdbc:postgresql://db:5432/google
+      - --username=admin
+      - --password=admin
+      - --defaultSchemaName=google_docs
+      - update
+    volumes:
+      - ./google-docs/migrations/changelog:/liquibase/changelog
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: core_builder_app
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5433/google
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:

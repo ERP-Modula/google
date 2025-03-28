@@ -1,0 +1,1 @@
+create schema google_docs;

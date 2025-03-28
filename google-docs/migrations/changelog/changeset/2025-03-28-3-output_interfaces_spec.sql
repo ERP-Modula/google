@@ -1,0 +1,9 @@
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', 'ef226816-9d57-43b4-bd91-24b0b084d814');
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', '15ab36ee-88fa-4534-b377-eaf2b9c51614');
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', '7d88d879-6130-4d47-a6c3-5e15e6ef84a2');
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', 'd735d8af-2f70-4a45-a2bc-fae686626cd0');
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', '7199a3de-366f-4ceb-9cab-902581a38f21');
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', 'a132d607-b682-4a39-a017-a292a4498051');
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', '21cb3196-d500-40a3-b511-5cf48615c234');
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', '5eaf8eaa-c016-4856-bfb8-81de382d08dc');
+INSERT INTO google_docs.output_interface_spec (output_interface_id, spec_id) VALUES ('c76ebe00-f34d-4520-97e7-025b5648aaa4', 'dcf064d1-48df-4937-bbe6-cf0c7b0e224d');
