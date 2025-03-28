@@ -16,11 +16,11 @@ public class ApiManagerController {
 
     private final ApiManagerService apiManagerService;
 
-//    @GetMapping("/module/shortMetadata")
-//    public ModuleShortInfo getShortModuleApi() {
-//        return apiManagerService.getModuleShortInfo();
-//    }
-//
+    @GetMapping("/module/short-metadata")
+    public ModuleShortInfo getShortModuleApi() {
+        return apiManagerService.getModuleShortInfo();
+    }
+
     @GetMapping("/module/metadata")
     public ModuleConfiguration getModuleApi() {
         return apiManagerService.getModuleInfo();
