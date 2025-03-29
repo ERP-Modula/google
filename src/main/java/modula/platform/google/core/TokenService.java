@@ -1,14 +1,13 @@
-package modula.platform.googledocs.core;
+package modula.platform.google.core;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import lombok.RequiredArgsConstructor;
-import modula.platform.googledocs.configuration.GoogleProperties;
-import modula.platform.googledocs.domain.entity.token.GoogleToken;
-import modula.platform.googledocs.repository.TokenRepository;
-import org.springframework.beans.factory.annotation.Value;
+import modula.platform.google.configuration.GoogleProperties;
+import modula.platform.google.domain.entity.token.GoogleToken;
+import modula.platform.google.repository.TokenRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

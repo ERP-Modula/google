@@ -1,10 +1,9 @@
-package modula.platform.googledocs.core;
+package modula.platform.google.core;
 
 import com.modula.common.domain.moduleconfiguration.ModuleConfiguration;
-import com.modula.common.dto.moduleconfiguration.ModuleConfigurationShortInfoDTO;
 import lombok.RequiredArgsConstructor;
 //import modula.platform.googledocs.repository.ActionInterfaceRepository;
-import modula.platform.googledocs.repository.ModuleConfigurationRepository;
+import modula.platform.google.repository.ModuleConfigurationRepository;
 import org.springframework.stereotype.Service;
 
 @Service

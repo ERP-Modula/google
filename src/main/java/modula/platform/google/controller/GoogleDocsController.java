@@ -1,10 +1,10 @@
-package modula.platform.googledocs.controller;
+package modula.platform.google.controller;
 
 import com.google.api.services.drive.model.File;
 import lombok.RequiredArgsConstructor;
-import modula.platform.googledocs.core.GoogleDocsService;
-import modula.platform.googledocs.domain.dto.ListDocumentsRequest;
-import modula.platform.googledocs.domain.dto.ListModifiedDocumentsRequest;
+import modula.platform.google.core.GoogleDocsService;
+import modula.platform.google.domain.dto.ListDocumentsRequest;
+import modula.platform.google.domain.dto.ListModifiedDocumentsRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;

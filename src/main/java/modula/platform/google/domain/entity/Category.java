@@ -1,4 +1,4 @@
-package modula.platform.googledocs.domain.entity;
+package modula.platform.google.domain.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

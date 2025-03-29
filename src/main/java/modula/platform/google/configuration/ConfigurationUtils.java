@@ -1,14 +1,8 @@
-package modula.platform.googledocs.configuration;
+package modula.platform.google.configuration;
 
 
-import com.google.api.services.drive.model.File;
-import modula.platform.googledocs.domain.entity.Category;
 //import modula.platform.googledocs.domain.entity.field.*;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.UUID;
-import java.util.List;
 
 public class ConfigurationUtils {
 

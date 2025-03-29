@@ -1,4 +1,4 @@
-package modula.platform.googledocs.repository;
+package modula.platform.google.repository;
 
 import com.modula.common.domain.moduleconfiguration.ModuleConfiguration;
 import org.springframework.data.jpa.repository.JpaRepository;

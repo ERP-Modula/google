@@ -1,8 +1,8 @@
-package modula.platform.googledocs.controller;
+package modula.platform.google.controller;
 
 import lombok.RequiredArgsConstructor;
-import modula.platform.googledocs.core.TokenService;
-import modula.platform.googledocs.domain.dto.AuthCodeDTO;
+import modula.platform.google.core.TokenService;
+import modula.platform.google.domain.dto.AuthCodeDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;

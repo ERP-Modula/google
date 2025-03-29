@@ -1,10 +1,8 @@
-package modula.platform.googledocs.core;
+package modula.platform.google.core;
 
 import lombok.RequiredArgsConstructor;
 //import modula.platform.googledocs.repository.ActionRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

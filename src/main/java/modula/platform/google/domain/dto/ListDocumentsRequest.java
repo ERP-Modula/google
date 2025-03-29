@@ -1,4 +1,4 @@
-package modula.platform.googledocs.domain.dto;
+package modula.platform.google.domain.dto;
 
 import lombok.Data;
 

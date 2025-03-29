@@ -1,4 +1,4 @@
-package modula.platform.googledocs.core;
+package modula.platform.google.core;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -13,9 +13,9 @@ import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.AccessToken;
 import com.google.auth.oauth2.GoogleCredentials;
 import lombok.RequiredArgsConstructor;
-import modula.platform.googledocs.domain.dto.ListDocumentsRequest;
-import modula.platform.googledocs.domain.dto.ListModifiedDocumentsRequest;
-import modula.platform.googledocs.domain.entity.token.GoogleToken;
+import modula.platform.google.domain.dto.ListDocumentsRequest;
+import modula.platform.google.domain.dto.ListModifiedDocumentsRequest;
+import modula.platform.google.domain.entity.token.GoogleToken;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
