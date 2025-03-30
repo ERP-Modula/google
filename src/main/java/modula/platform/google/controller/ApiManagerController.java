@@ -2,6 +2,7 @@ package modula.platform.google.controller;
 
 
 import com.modula.common.domain.moduleconfiguration.ModuleConfiguration;
+import com.modula.common.dto.moduleconfiguration.ModuleConfigurationShortInfoDTO;
 import lombok.RequiredArgsConstructor;
 import modula.platform.google.core.ApiManagerService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,10 @@ public class ApiManagerController {
 
     private final ApiManagerService apiManagerService;
 
-//    @GetMapping("/module/short-metadata")
-//    public ModuleShortInfo getShortModuleApi() {
-//        return apiManagerService.getModuleShortInfo();
-//    }
+    @GetMapping("/module/short-metadata")
+    public ModuleConfigurationShortInfoDTO getShortModuleApi() {
+        return apiManagerService.getModuleShortInfo();
+    }
 
     @GetMapping("/module/metadata")
     public ModuleConfiguration getModuleApi() {

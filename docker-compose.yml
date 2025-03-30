@@ -30,7 +30,7 @@ services:
       - --defaultSchemaName=google_docs
       - update
     volumes:
-      - ./google-docs/migrations/changelog:/liquibase/changelog
+      - ./migrations/changelog:/liquibase/changelog
 
   app:
     build:

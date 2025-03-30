@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @SpringBootApplication
 @EntityScan({
         "com.modula.common.domain.moduleconfiguration",
-        "package modula.platform.googledocs"
+        "package modula.platform.google"
 })
 public class GoogleApplication {
 
