@@ -29,7 +29,7 @@ def ensureTokenHasReadPackages() {
 }
 
 def getGithubToken() {
-    ensureTokenHasReadPackages()
+//    ensureTokenHasReadPackages()
     def token = System.getenv("GITHUB_TOKEN")
     if (!token) {
         try {
@@ -40,6 +40,7 @@ def getGithubToken() {
             logger.warn("Failed to get GitHub token via gh", e)
         }
     }
+    println("Token: ${token}")
     println("Token: ${token[0..3]}${'*' * (token.length() - 9)}${token[-5..-1]}")
     return token ?: ""
 }
@@ -70,8 +71,8 @@ repositories {
     maven {
         url = uri("https://maven.pkg.github.com/ERP-Modula/common-lib")
         credentials {
-            username = getGithubUser()
-            password = getGithubToken()
+            username = System.getenv("GITHUB_USER") ?: getGithubUser()
+            password = System.getenv("GITHUB_TOKEN") ?: getGithubToken()
         }
     }
 }

@@ -2,9 +2,9 @@ spring:
   application:
     name: google-docs
   datasource:
-    url: jdbc:postgresql://localhost:5432/google
-    username: admin
-    password: admin
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/google}
+    username: ${SPRING_DATASOURCE_USERNAME:admin}
+    password: ${SPRING_DATASOURCE_PASSWORD:admin}
 
   jpa:
     hibernate:

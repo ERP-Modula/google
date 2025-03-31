@@ -34,15 +34,19 @@ services:
 
   app:
     build:
-      context: .
       dockerfile: Dockerfile
-    container_name: core_builder_app
+      args:
+        - GITHUB_TOKEN=${GITHUB_TOKEN}
+        - GITHUB_USER=${GITHUB_USER}
+    container_name: google_module
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5433/google
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db_google:5432/google
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin
+    networks:
+      - backend
     ports:
       - "8080:8080"
 
