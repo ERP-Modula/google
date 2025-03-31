@@ -12,7 +12,4 @@ RUN sed -i 's/\r$//' gradlew
 
 RUN ./gradlew clean build
 
-EXPOSE 8080
-
-
 ENTRYPOINT ["java","-jar","build/libs/google-0.0.1-SNAPSHOT.jar"]

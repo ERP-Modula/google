@@ -39,16 +39,18 @@ services:
         - GITHUB_TOKEN=${GITHUB_TOKEN}
         - GITHUB_USER=${GITHUB_USER}
     container_name: google_module
+    image: vuhtang/google-app
     depends_on:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db_google:5432/google
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin
+      SERVER_PORT: 8081
     networks:
       - backend
     ports:
-      - "8080:8080"
+      - "8081:8081"
 
 volumes:
   postgres_data:
