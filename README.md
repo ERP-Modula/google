@@ -13,6 +13,6 @@ source ~/.zshrc
 *** Вариант запуска через терминал:
 с 1 - 3 пункт повторяем.
 4. запускаем в терминале сборку докер образа
-```
-docker build --build-arg GITHUB_TOKEN=ВАШ_ТОКЕН --build-arg GITHUB_USER=ВАШ_ЮЗЕР .
-```
+``` 
+docker buildx build --push -t vuhtang/google-app --build-arg GITHUB_TOKEN=*ваш токен* --build-arg GITHUB_USER=*ваш логин* .
+``` 
